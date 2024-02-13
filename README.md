@@ -2,7 +2,7 @@
 Drugstore management system and medical supplies
 
 ## Motivations
-Initially started as a final year field project for a Systems Analyst (go to...) I decided to refine the project, maintaining the architecture, the bases of analysis and capture of requirements of this particular business.
+Initially started as a final year field project for a Systems Analyst (available <a href="https://github.com/MatiasMagliano/sitio-dlc-laravel">here</a>) I decided to refine the project, maintaining the architecture, the bases of analysis and capture of requirements of this particular business.
 
 
 <p align="center">
