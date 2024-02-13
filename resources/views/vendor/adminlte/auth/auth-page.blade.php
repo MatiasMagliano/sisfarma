@@ -1,11 +1,11 @@
 @extends('adminlte::master')
 
-@php( $dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'home') )
+@php($dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'home'))
 
 @if (config('adminlte.use_route_url', false))
-    @php( $dashboard_url = $dashboard_url ? route($dashboard_url) : '' )
+    @php($dashboard_url = $dashboard_url ? route($dashboard_url) : '')
 @else
-    @php( $dashboard_url = $dashboard_url ? url($dashboard_url) : '' )
+    @php($dashboard_url = $dashboard_url ? url($dashboard_url) : '')
 @endif
 
 @section('adminlte_css')
@@ -16,6 +16,7 @@
 @section('classes_body'){{ ($auth_type ?? 'login') . '-page' }}@stop
 
 @section('body')
+    <div class="parallax-container"></div>
     <div class="{{ $auth_type ?? 'login' }}-box">
 
         {{-- Logo --}}
@@ -25,19 +26,13 @@
                 {{-- Logo Image --}}
                 @if (config('adminlte.auth_logo.enabled', false))
                     <img src="{{ asset(config('adminlte.auth_logo.img.path')) }}"
-                         alt="{{ config('adminlte.auth_logo.img.alt') }}"
-                         @if (config('adminlte.auth_logo.img.class', null))
-                            class="{{ config('adminlte.auth_logo.img.class') }}"
-                         @endif
-                         @if (config('adminlte.auth_logo.img.width', null))
-                            width="{{ config('adminlte.auth_logo.img.width') }}"
-                         @endif
-                         @if (config('adminlte.auth_logo.img.height', null))
-                            height="{{ config('adminlte.auth_logo.img.height') }}"
-                         @endif>
+                        alt="{{ config('adminlte.auth_logo.img.alt') }}"
+                        @if (config('adminlte.auth_logo.img.class', null)) class="{{ config('adminlte.auth_logo.img.class') }}" @endif
+                        @if (config('adminlte.auth_logo.img.width', null)) width="{{ config('adminlte.auth_logo.img.width') }}" @endif
+                        @if (config('adminlte.auth_logo.img.height', null)) height="{{ config('adminlte.auth_logo.img.height') }}" @endif>
                 @else
-                    <img src="{{ asset(config('adminlte.logo_img')) }}"
-                         alt="{{ config('adminlte.logo_img_alt') }}" height="50">
+                    <img src="{{ asset(config('adminlte.logo_img')) }}" alt="{{ config('adminlte.logo_img_alt') }}"
+                        height="50">
                 @endif
 
                 {{-- Logo Label --}}
@@ -78,4 +73,5 @@
 @section('adminlte_js')
     @stack('js')
     @yield('js')
+    <script src="{{asset('vendor/parallax/parallax.js')}}"></script>
 @stop
