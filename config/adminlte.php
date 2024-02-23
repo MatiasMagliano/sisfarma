@@ -290,10 +290,14 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
+        // TOP Navbar items:
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
+            'url'          => 'navbar/search',
+            'method'       => 'post',
+            'input_name'   => 'searchVal',      // Name for the underlying input ('adminlteSearch' by default).
+            'id'           => 'sidebarMenuSearch',   // ID attribute for the underlying input (optional).
             'topnav_right' => true,
         ],
         [
@@ -301,24 +305,47 @@ return [
             'topnav_right' => true,
         ],
 
+        // TOP NOTIFICATIONS Nabvar item
+        /*[
+            'type'         => 'navbar-notification',
+            'id'           => 'my-notification',      // An ID attribute (required).
+            'icon'         => 'fas fa-bell',          // A font awesome icon (required).
+            'icon_color'   => 'warning',              // The initial icon color (optional).
+            'label'        => 0,                      // The initial label for the badge (optional).
+            'label_color'  => 'secondary',               // The initial badge color (optional).
+            'url'          => 'notifications/show',   // The url to access all notifications/elements (required).
+            'topnav_right' => true,                   // Or "topnav => true" to place on the left (required).
+            'dropdown_mode'   => true,                // Enables the dropdown mode (optional).
+            'dropdown_flabel' => 'All notifications', // The label for the dropdown footer link (optional).
+            'update_cfg'   => [
+                'url' => 'notifications/get',         // The url to periodically fetch new data (optional).
+                'period' => 60,                       // The update period for get new data (in seconds, optional).
+            ],
+        ],*/
+
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'can'  => ['create-role', 'edit-role', 'delete-role', 'create-user', 'edit-user', 'delete-user',],
+            'text' => 'Users administration',
+            'icon' => 'fas fa-users-cog',
+            'submenu'   =>
+            [
+                [
+                    'text' => 'Manage roles',
+                    'url'  => 'roles',
+                    'icon' => 'fas fa-user-tag'
+                ]
+            ]
         ],
+
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'header'   => 'account_settings',
+            'classes'  => 'text-yellow text-bold text-center',
         ],
-        ['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url'  => 'profile',
@@ -328,60 +355,6 @@ return [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
         ],
     ],
 
