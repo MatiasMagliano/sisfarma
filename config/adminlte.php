@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -63,9 +63,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>S</b>IS<b>F</b>ARMA',
+    'logo_img' => 'img/brand-logo.png',
+    'logo_img_class' => 'brand-image elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Admin Logo',
@@ -84,9 +84,9 @@ return [
     */
 
     'auth_logo' => [
-        'enabled' => false,
+        'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'img/brand-logo.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -211,14 +211,14 @@ return [
     */
 
     'sidebar_mini' => 'lg',
-    'sidebar_collapse' => false,
+    'sidebar_collapse' => true,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
-    'sidebar_nav_animation_speed' => 300,
+    'sidebar_nav_animation_speed' => 500,
 
     /*
     |--------------------------------------------------------------------------
@@ -328,16 +328,162 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+
+        // CLIENTES
         [
-            'can'  => ['create-role', 'edit-role', 'delete-role', 'create-user', 'edit-user', 'delete-user',],
-            'text' => 'Users administration',
+            'can'     => ['create-client', 'edit-client', 'delete-client', 'show-client','create-dde', 'edit-dde', 'delete-dde', 'show-dde'],
+            'text'    => 'Clients',
+            'icon'    => 'fas fa-handshake',
+            'submenu' => [
+                [
+                    'can'   => ['create-client', 'edit-client', 'delete-client', 'show-client'],
+                    'text'  => 'Client list',
+                    'url'   => '#',
+                    'icon'  => 'fas fa-stream',
+                ],
+                [
+                    'can'   => ['create-dde', 'edit-dde', 'delete-dde', 'show-dde'],
+                    'text'  => 'Delivery addresses',
+                    'url'   => '#',
+                    'icon'  => 'fas fa-truck-loading'
+                ],
+            ],
+        ],
+
+        // COTIZACIONES
+        [
+            'can'       => ['create-quotation', 'edit-quotation', 'delete-quotation', 'show-quotation'],
+            'text'      => 'Quotations',
+            'icon'      => 'fas fa-money-check-alt',
+            'submenu'   => [
+                [
+                    'can'   => 'create-quotation',
+                    'text'  => 'Create quotation',
+                    'url'   => '#',
+                    'icon'  => 'fab fa-shopify',
+                ],
+                [
+                    'can'   => ['create-quotation', 'edit-quotation', 'delete-quotation'],
+                    'text'  => 'Quotation list',
+                    'url'   => '#',
+                    'icon'  => 'fas fa-stream',
+                ],
+                [
+                    'can'   => 'show-quotation',
+                    'text'  => 'Quotation history',
+                    'url'   => '#',
+                    'icon'  => 'fas fa-history',
+                ],
+            ],
+        ],
+
+        // ORDENES DE TRABAJO
+        [
+            'can'   => ['create-work-order', 'edit-work-order', 'delete-work-order', 'show-work-order'],
+            'text'  => 'Work orders',
+            'icon'  => 'fas fa-toolbox',
+            'submenu'   => [
+                [
+                    'text'   => 'Work orders list',
+                    'url'    => '#',
+                    'icon'   => 'fas fa-stream',
+                ],
+                [
+                    'text'   => 'Promote work order',
+                    'url'    => '#',
+                    'icon'   => 'fas fa-tools',
+                ],
+            ]
+        ],
+
+        // PRODUCTOS
+        [
+            'can'  => ['create-product', 'edit-product', 'delete-product', 'show-product', 'create-batches', 'edit-batches', 'delete-batches', 'show-batches', 'create-prices', 'edit-prices', 'delete-prices', 'show-prices'],
+            'text' => 'Products',
+            'icon' => 'fas fa-shopping-cart',
+            'submenu'   =>
+            [
+                [
+                    'can'  => ['create-product', 'edit-product', 'delete-product', 'show-product'],
+                    'text' => 'Product list',
+                    'url'  => '#',
+                    'icon' => 'fas fa-stream'
+                ],
+                [
+                    'can'  => ['create-batches', 'edit-batches', 'delete-batches'],
+                    'text' => 'Batches',
+                    'url'  => '#',
+                    'icon' => 'fas fa-boxes'
+                ],
+                [
+                    'can'  => 'show-batches',
+                    'text' => 'Show batches',
+                    'url'  => 'batches/show-by-product',
+                    'icon' => 'fas fa-boxes'
+                ],
+                [
+                    'text' => 'Product prices',
+                    'url'  => '#',
+                    'icon' => 'fas fa-hand-holding-usd'
+                ],
+                [
+                    'can'  => 'show-prices',
+                    'text' => 'Show prices',
+                    'url'  => '#',
+                    'icon' => 'fas fa-hand-holding-usd'
+                ]
+            ]
+        ],
+
+        // REPORTES
+        [
+            'can'     => ['create-report', 'edit-report', 'delete-report', 'show-report'],
+            'text'    => 'Reporting',
+            'icon'    => 'fas fa-list',
+            'submenu' => [
+                [
+                    'text'  => 'Document calendars',
+                    'url'   => '#',
+                    'icon'  => 'fas fa-calendar',
+                ],
+                [
+                    'text'  => 'Reporting list',
+                    'url'   => '#',
+                    'icon'  => 'fas fa-stream',
+                ],
+            ],
+        ],
+
+        // ESPECIALES - ADMINISTRACIÓN DE USUARIOS
+        [
+            'can'  => ['create-role', 'edit-role', 'delete-role', 'show-role', 'create-user', 'edit-user', 'delete-user', 'show-user'],
+            'text' => 'Manage roles & permissions',
             'icon' => 'fas fa-users-cog',
             'submenu'   =>
             [
                 [
+                    'can'  => ['create-role', 'edit-role', 'delete-role'],
                     'text' => 'Manage roles',
                     'url'  => 'roles',
                     'icon' => 'fas fa-user-tag'
+                ],
+                [
+                    'can'  => ['show-role'],
+                    'text' => 'Roles list',
+                    'url'  => 'roles/showAll',
+                    'icon' => 'fas fa-user-tag'
+                ],
+                [
+                    'can'  => ['create-user', 'edit-user', 'delete-user', 'show-user'],
+                    'text' => 'Users',
+                    'url'  => 'users',
+                    'icon' => 'fas fa-users'
+                ],
+                [
+                    'can'  => ['show-user'],
+                    'text' => 'Users list',
+                    'url'  => 'users/showAll',
+                    'icon' => 'fas fa-users'
                 ]
             ]
         ],

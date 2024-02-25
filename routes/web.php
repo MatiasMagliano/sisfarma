@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MenuSearchController;
+use App\Http\Controllers\NotificationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +22,14 @@ Route::get('/', function () {
     return view('auth.login');
 })->name('root.login');
 
+Route::get('/home', function () {
+    return view('home');
+})->middleware(['auth', 'verified'])->name('home');
+
 Route::get('/dashboard', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -29,3 +38,22 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// AQUI SE DEFINEN LAS RUTAS DE SISTEMA... El scaffolding de Spatie se hace cargo de los permisos
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+
+
+
+
+
+
+
+
+    Route::match(['get', 'post'], '/navbar/search', [MenuSearchController::class, 'showNavbarSearchResults']);
+    Route::prefix('notifications')->middleware(['auth', 'verified'])->name('notifications')->group(function (){
+        Route::get('get', [NotificationsController::class, 'getNotificationsData'])->name('get');
+        Route::get('show', [NotificationsController::class, 'showAll'])->name('show');
+    });
+});

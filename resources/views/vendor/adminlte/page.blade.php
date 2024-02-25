@@ -5,6 +5,21 @@
 @section('adminlte_css')
     @stack('css')
     @yield('css')
+    <style>
+        #boton-arriba {
+            position: fixed;
+            bottom: 12%;
+            right: 11%;
+            display: none;
+        }
+
+        @media (max-width: 720px) {
+            #boton-arriba {
+                bottom: 11%;
+                right: 3%;
+            }
+        }
+    </style>
 @stop
 
 @section('classes_body', $layoutHelper->makeBodyClasses())
@@ -15,19 +30,19 @@
     <div class="wrapper">
 
         {{-- Preloader Animation --}}
-        @if($layoutHelper->isPreloaderEnabled())
+        @if ($layoutHelper->isPreloaderEnabled())
             @include('adminlte::partials.common.preloader')
         @endif
 
         {{-- Top Navbar --}}
-        @if($layoutHelper->isLayoutTopnavEnabled())
+        @if ($layoutHelper->isLayoutTopnavEnabled())
             @include('adminlte::partials.navbar.navbar-layout-topnav')
         @else
             @include('adminlte::partials.navbar.navbar')
         @endif
 
         {{-- Left Main Sidebar --}}
-        @if(!$layoutHelper->isLayoutTopnavEnabled())
+        @if (!$layoutHelper->isLayoutTopnavEnabled())
             @include('adminlte::partials.sidebar.left-sidebar')
         @endif
 
@@ -44,7 +59,7 @@
         @endif
 
         {{-- Right Control Sidebar --}}
-        @if(config('adminlte.right_sidebar'))
+        @if (config('adminlte.right_sidebar'))
             @include('adminlte::partials.sidebar.right-sidebar')
         @endif
 
@@ -54,4 +69,5 @@
 @section('adminlte_js')
     @stack('js')
     @yield('js')
+    <script type="text/javascript" src="{{ asset('js/top-button.js') }}" defer></script>
 @stop
