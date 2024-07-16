@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -22,13 +23,8 @@ Route::get('/', function () {
     return view('auth.login');
 })->name('root.login');
 
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('home');
-
-Route::get('/dashboard', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+Route::get('/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {

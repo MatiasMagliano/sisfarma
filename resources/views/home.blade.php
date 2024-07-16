@@ -3,6 +3,10 @@
 @section('title', 'HOME')
 
 @section('content_header')
+    {{-- BREADCRUMBS PATH --}}
+    <div class=" text-sm border-bottom">
+        {{ Breadcrumbs::render('home') }}
+    </div>
     <h1 class="m-0 text-dark">{{ __('Dashboard') }}</h1>
 @stop
 
@@ -16,10 +20,6 @@
             </div>
         </div>
     </div>
-@stop
-
-@section('js')
-    @include('alerts')
 @stop
 
 @section('footer')

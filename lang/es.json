@@ -1,5 +1,7 @@
 {
+    "Home": "Inicio",
     "Dashboard": "Panel principal",
+    "User profile": "Perfil de usuario",
     "Profile Information": "Información de Perfil",
     "Update your account's profile information and email address.": "Actualice su información de perfil y correo electrónico",
     "Your email address is unverified.": "Su correo electrónico no está verificado",
@@ -17,5 +19,36 @@
 
     "Save": "Guardar",
     "Saved.": "Guardado.",
-    "Cancel":"Cancelar"
+    "Clear": "Limpiar",
+    "Cancel":"Cancelar",
+    "Back": "Volver",
+    "Show": "Mostrar",
+    "Edit": "Editar",
+    "Delete": "Borrar",
+    "Actions": "Acciones",
+    "Select multiple options...": "Seleccione varias opciones...",
+    "Control-click for multiple selection.": "Control-click para seleccionar varios a la vez.",
+
+    "Roles & Permissions management": "Adm. de roles y permisos",
+    "Manage Roles": "Administrar roles",
+    "Add New Role": "Nuevo rol",
+    "Update Role": "Actualizar rol",
+    "Edit role $ permissions": "Editar rol y permisos",
+    "No Role Found!": "No se ecnontró ningún rol",
+    "Role Information": "Información de rol",
+    "Do you want to delete this role?": "¿Confirma borrar este rol?",
+    "New role is added successfully.": "Un nuevo rol se ha agregado.",
+    "SUPER ADMIN ROLE CAN NOT BE EDITED": "EL ROL DE SUPER-ADMIN NO PUEDE SER EDITADO",
+    "Role is updated successfully.": "Rol actualizado correctamente.",
+    "SUPER ADMIN ROLE CAN NOT BE DELETED": "EL ROL DE SUPER-ADMIN NO PUEDE SER BORRADO",
+    "CAN NOT DELETE SELF ASSIGNED ROLE": "NO SE PUEDE BORRAR UN ROL AUTO ASIGNADO",
+    "Role is deleted successfully.": "Rol borrado correctamente.",
+    "Name": "Nombre del rol",
+    "Permissions": "Permisos",
+    "All": "Todos",
+
+    "New user is added successfully.": "Nuevo usuario agregado correctamente.",
+    "USER DOES NOT HAVE THE RIGHT PERMISSIONS": "EL USUARIO NO TIENE LOS PERMISOS CORRECTOS",
+    "User is updated successfully.": "Usuario actualizado correctamente.",
+    "User is deleted successfully.": "Usuario eliminado correctamente."
 }

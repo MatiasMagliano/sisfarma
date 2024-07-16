@@ -336,6 +336,12 @@ return [
             'icon'    => 'fas fa-handshake',
             'submenu' => [
                 [
+                    'can'   => 'create-client',
+                    'text'  => 'Create client',
+                    'url'   => '#',
+                    'icon'  => 'fas fa-user-plus',
+                ],
+                [
                     'can'   => ['create-client', 'edit-client', 'delete-client', 'show-client'],
                     'text'  => 'Client list',
                     'url'   => '#',
@@ -352,7 +358,7 @@ return [
 
         // COTIZACIONES
         [
-            'can'       => ['create-quotation', 'edit-quotation', 'delete-quotation', 'show-quotation'],
+            'can'       => ['create-quotation', 'edit-quotation', 'delete-quotation', 'show-quotation','create-invoice', 'edit-invoice', 'delete-invoice', 'show-invoice'],
             'text'      => 'Quotations',
             'icon'      => 'fas fa-money-check-alt',
             'submenu'   => [
@@ -363,7 +369,13 @@ return [
                     'icon'  => 'fab fa-shopify',
                 ],
                 [
-                    'can'   => ['create-quotation', 'edit-quotation', 'delete-quotation'],
+                    'can'   => 'create-invoice',
+                    'text'  => 'Create invoice',
+                    'url'   => '#',
+                    'icon'  => 'fas fa-file-invoice',
+                ],
+                [
+                    'can'   => ['edit-quotation', 'delete-quotation'],
                     'text'  => 'Quotation list',
                     'url'   => '#',
                     'icon'  => 'fas fa-stream',
@@ -373,6 +385,12 @@ return [
                     'text'  => 'Quotation history',
                     'url'   => '#',
                     'icon'  => 'fas fa-history',
+                ],
+                [
+                    'can'   => ['edit-invoice', 'delete-invoice', 'show-invoice'],
+                    'text'  => 'Invoice list',
+                    'url'   => '#',
+                    'icon'  => 'fas fa-stream',
                 ],
             ],
         ],
@@ -398,7 +416,7 @@ return [
 
         // PRODUCTOS
         [
-            'can'  => ['create-product', 'edit-product', 'delete-product', 'show-product', 'create-batches', 'edit-batches', 'delete-batches', 'show-batches', 'create-prices', 'edit-prices', 'delete-prices', 'show-prices'],
+            'can'  => ['create-product', 'edit-product', 'delete-product', 'show-product', 'create-batches', 'edit-batches', 'delete-batches', 'show-batches', 'create-prices', 'edit-prices', 'delete-prices', 'show-prices', 'create-traceable', 'edit-traceable', 'delete-traceable', 'show-traceable'],
             'text' => 'Products',
             'icon' => 'fas fa-shopping-cart',
             'submenu'   =>
@@ -427,10 +445,10 @@ return [
                     'icon' => 'fas fa-hand-holding-usd'
                 ],
                 [
-                    'can'  => 'show-prices',
-                    'text' => 'Show prices',
+                    'can'  => ['create-traceable', 'edit-traceable', 'delete-traceable', 'show-traceable'],
+                    'text' => 'Traceable',
                     'url'  => '#',
-                    'icon' => 'fas fa-hand-holding-usd'
+                    'icon' => 'fas fa-exchange-alt'
                 ]
             ]
         ],
@@ -474,7 +492,7 @@ return [
                     'icon' => 'fas fa-user-tag'
                 ],
                 [
-                    'can'  => ['create-user', 'edit-user', 'delete-user', 'show-user'],
+                    'can'  => ['create-user', 'edit-user', 'delete-user'],
                     'text' => 'Users',
                     'url'  => 'users',
                     'icon' => 'fas fa-users'
@@ -572,6 +590,11 @@ return [
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
                 ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => 'https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@1.5.2/dist/select2-bootstrap4.min.css',
+                ],
             ],
         ],
         'Chartjs' => [
@@ -589,8 +612,13 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'asset' => true,
+                    'location' => 'https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css',
                 ],
             ],
         ],

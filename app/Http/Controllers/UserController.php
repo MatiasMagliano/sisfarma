@@ -39,7 +39,7 @@ class UserController extends Controller
      */
     public function create(): View
     {
-        return view('users.create', [
+        return view('super-admin.users.create', [
             'roles' => Role::pluck('name')->all()
         ]);
     }
@@ -55,8 +55,8 @@ class UserController extends Controller
         $user = User::create($input);
         $user->assignRole($request->roles);
 
-        return redirect()->route('users.index')
-                ->withSuccess('New user is added successfully.');
+        return redirect()->route('super-admin.users.index')
+                ->withSuccess(__('New user is added successfully.'));
     }
 
     /**
@@ -77,7 +77,7 @@ class UserController extends Controller
         // Check Only Super Admin can update his own Profile
         if ($user->hasRole('Super Admin')){
             if($user->id != auth()->user()->id){
-                abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
+                abort(403, __('USER DOES NOT HAVE THE RIGHT PERMISSIONS'));
             }
         }
 
@@ -106,7 +106,7 @@ class UserController extends Controller
         $user->syncRoles($request->roles);
 
         return redirect()->back()
-                ->withSuccess('User is updated successfully.');
+                ->withSuccess(__('User is updated successfully.'));
     }
 
     /**

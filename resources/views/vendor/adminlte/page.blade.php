@@ -5,21 +5,6 @@
 @section('adminlte_css')
     @stack('css')
     @yield('css')
-    <style>
-        #boton-arriba {
-            position: fixed;
-            bottom: 12%;
-            right: 11%;
-            display: none;
-        }
-
-        @media (max-width: 720px) {
-            #boton-arriba {
-                bottom: 11%;
-                right: 3%;
-            }
-        }
-    </style>
 @stop
 
 @section('classes_body', $layoutHelper->makeBodyClasses())
@@ -69,5 +54,6 @@
 @section('adminlte_js')
     @stack('js')
     @yield('js')
+    @include('alerts')
     <script type="text/javascript" src="{{ asset('js/top-button.js') }}" defer></script>
 @stop

@@ -1,0 +1,22 @@
+#boton-arriba {
+    position: fixed;
+    bottom: 12%;
+    right: 11%;
+    display: none;
+}
+
+@media screen and (max-width: 720px) {
+    #boton-arriba {
+        bottom: 11%;
+        right: 3%;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    h1.responsive-header {
+        font-size: 20px;
+        font-weight: 700;
+    }
+}

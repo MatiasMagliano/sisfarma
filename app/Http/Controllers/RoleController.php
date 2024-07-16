@@ -35,7 +35,7 @@ class RoleController extends Controller
     public function index(): View
     {
         return view('super-admin.roles.index', [
-            'roles' => Role::orderBy('id','DESC')->paginate(3)
+            'roles' => Role::orderBy('id','DESC')->paginate(5),
         ]);
     }
 
@@ -44,8 +44,12 @@ class RoleController extends Controller
      */
     public function create(): View
     {
-        return view('roles.create', [
-            'permissions' => Permission::get()
+        return view('super-admin.roles.create', [
+            'permissions' => Permission::get(),
+            'config' => [
+                "placeholder" => __('Select multiple options...'),
+                "allowClear" => true,
+            ]
         ]);
     }
 
@@ -61,7 +65,7 @@ class RoleController extends Controller
         $role->syncPermissions($permissions);
 
         return redirect()->route('roles.index')
-                ->withSuccess('New role is added successfully.');
+                ->withSuccess(__('New role is added successfully.'));
     }
 
     /**
@@ -73,7 +77,7 @@ class RoleController extends Controller
             ->where("role_id",$role->id)
             ->select('name')
             ->get();
-        return view('roles.show', [
+        return view('super-admin.roles.show', [
             'role' => $role,
             'rolePermissions' => $rolePermissions
         ]);
@@ -85,17 +89,21 @@ class RoleController extends Controller
     public function edit(Role $role): View
     {
         if($role->name=='Super Admin'){
-            abort(403, 'SUPER ADMIN ROLE CAN NOT BE EDITED');
+            abort(403, __('SUPER ADMIN ROLE CAN NOT BE EDITED'));
         }
 
         $rolePermissions = FacadesDB::table("role_has_permissions")->where("role_id",$role->id)
             ->pluck('permission_id')
             ->all();
 
-        return view('roles.edit', [
+        return view('super-admin.roles.edit', [
             'role' => $role,
             'permissions' => Permission::get(),
-            'rolePermissions' => $rolePermissions
+            'rolePermissions' => $rolePermissions,
+            'config' => [
+                "placeholder" => __('Select multiple options...'),
+                "allowClear" => true,
+            ]
         ]);
     }
 
@@ -113,7 +121,7 @@ class RoleController extends Controller
         $role->syncPermissions($permissions);
 
         return redirect()->back()
-                ->withSuccess('Role is updated successfully.');
+                ->withSuccess(__('Role is updated successfully.'));
     }
 
     /**
@@ -122,13 +130,13 @@ class RoleController extends Controller
     public function destroy(Role $role): RedirectResponse
     {
         if($role->name=='Super Admin'){
-            abort(403, 'SUPER ADMIN ROLE CAN NOT BE DELETED');
+            abort(403, __('SUPER ADMIN ROLE CAN NOT BE DELETED'));
         }
         if(auth()->user()->hasRole($role->name)){
-            abort(403, 'CAN NOT DELETE SELF ASSIGNED ROLE');
+            abort(403, __('CAN NOT DELETE SELF ASSIGNED ROLE'));
         }
         $role->delete();
         return redirect()->route('roles.index')
-                ->withSuccess('Role is deleted successfully.');
+                ->withSuccess(__('Role is deleted successfully.'));
     }
 }
